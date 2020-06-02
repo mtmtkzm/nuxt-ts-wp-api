@@ -1,0 +1,19 @@
+@mixin mq($media-width) {
+  @if $media-width == mobile {
+    @media only screen and (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  }
+
+  @else if $media-width == desktop {
+    @media only screen and (min-width: $breakpoint-desktop) {
+      @content;
+    }
+  }
+
+  @else {
+    @media only screen and (min-width: $media-width) {
+      @content;
+    }
+  }
+}

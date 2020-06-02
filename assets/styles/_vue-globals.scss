@@ -1,0 +1,7 @@
+/*
+ * nuxt.config の styleResources から読み込むグローバル CSS を構成する
+ * 全コンポーネントに読まれるので、CSSとして出力される記述はNG
+ * */
+
+@import 'variables';
+@import 'media-query';

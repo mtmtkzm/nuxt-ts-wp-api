@@ -1,0 +1,15 @@
+//@import "~reset-css";
+//@import 'variables';
+//@import 'media-query';
+//@import 'base';
+//@import 'nuxt-transition';
+
+:root {
+  // custom mvp.css
+  --color-secondary: #41B883;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

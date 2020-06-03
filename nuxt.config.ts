@@ -1,8 +1,14 @@
 import { Configuration } from '@nuxt/types'
+import { getLigBlogItem, getLigBlogList } from './assets/scripts/get-article'
+
 require('dotenv').config()
 
 const nuxtConfig: Configuration = {
   mode: 'universal',
+
+  env: {
+    WP_API_URL: process.env.WP_API_URL || '',
+  },
 
   head: {
     title: process.env.npm_package_name || '',
@@ -21,8 +27,6 @@ const nuxtConfig: Configuration = {
 
   css: ['~/assets/styles/style.scss'],
 
-  plugins: [],
-
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxt/components', // TODO: Remove when upgrading to nuxt 2.13+
@@ -32,19 +36,24 @@ const nuxtConfig: Configuration = {
 
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/svg-sprite'],
 
-  // styleResources: {
-  //   scss: ['~/assets/styles/_vue-globals.scss'],
-  // },
-
   svgSprite: {
     input: '~/assets/svg/sprite-parts',
     output: '~/assets/svg/sprites',
     defaultSprite: 'sprite',
   },
 
-  axios: {},
+  generate: {
+    async routes() {
+      const ids = (await getLigBlogList()).map((item) => item.id)
 
-  build: {},
+      const posts = await Promise.all(ids.map(await getLigBlogItem))
+
+      return posts.map((post: any) => ({
+        route: String(post.id),
+        payload: post,
+      }))
+    },
+  },
 }
 
 module.exports = nuxtConfig

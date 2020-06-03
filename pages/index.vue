@@ -35,6 +35,6 @@ export default {
     const list = await getLigBlogList()
 
     return { list }
-  }
+  },
 }
 </script>

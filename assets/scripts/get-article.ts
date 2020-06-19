@@ -1,6 +1,20 @@
 import axios from 'axios'
-// import dayjs from 'dayjs'
-// import { sanitizeHtml } from '~/assets/scripts/utilities/sanitize-html'
+
+interface Post {
+  id: number
+  title: {
+    rendered: string
+    raw?: string
+  }
+  excerpt: {
+    rendered: string
+  }
+  content: {
+    rendered: string
+  }
+  date: string
+  link: string
+}
 
 const API_URL = 'https://liginc.co.jp/wp-json/wp/v2'
 
@@ -12,8 +26,8 @@ export const getLigBlogList = async function () {
     },
   })
 
-  const formatData = (list: any[]) => {
-    return list.map((data) => ({
+  const formatData = (list: Post[]) => {
+    return list.map((data: Post) => ({
       id: data.id,
       title: data.title.rendered,
       excerpt: data.excerpt.rendered,
@@ -28,7 +42,7 @@ export const getLigBlogList = async function () {
 export const getLigBlogItem = async function (id: number) {
   const response = await axios.get(`${API_URL}/posts/${id}`)
 
-  const formatData = (data: any) => {
+  const formatData = (data: Post) => {
     return {
       id,
       title: data.title.rendered,

@@ -29,12 +29,13 @@ const nuxtConfig: Configuration = {
 
   buildModules: [
     '@nuxt/typescript-build',
-    '@nuxt/components', // TODO: Remove when upgrading to nuxt 2.13+
     '@nuxtjs/style-resources',
     '@nuxtjs/stylelint-module',
   ],
 
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/svg-sprite'],
+
+  components: true,
 
   svgSprite: {
     input: '~/assets/svg/sprite-parts',

@@ -29,7 +29,7 @@
     "dayjs": "^1.8.28",
     "nuxt": "^2.0.0",
     "reset-css": "^5.0.1",
-    "sanitize-html": "^1.25.0"
+    "sanitize-html": "^2.3.2"
   },
   "devDependencies": {
     "@nuxt/components": "^0.2.3",
